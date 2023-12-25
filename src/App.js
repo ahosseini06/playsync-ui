@@ -1,16 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
-import { useGetEntitiesQuery } from "./services/playmaker";
+import { getEntities } from "./services/playmaker";
 import {Provider} from "react-redux"
+import { Suspense } from 'react';
 
-function App() {
-  const {data: t} = useGetEntitiesQuery({name: "tournament", populate:true})
+async function App() {
+  const tournaments = await getEntities({name: 'tournaments'});
+  const t = tournaments.data;
+  
+  console.log("front end data")
+  console.log(t)
   return (
     <ChakraProvider>
-    <div className="App">
-      {t && t.data.map(tr => <h4>{tr.attributes.name}</h4>)}
-    </div>
+      
+      <div className="App">
+        
+          {t && t.map(t => <h1><Suspense>{t.attributes.name}</Suspense></h1>)}
+        
+        hello world
+      </div>
     </ChakraProvider>
   );
 }
