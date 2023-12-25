@@ -28,26 +28,6 @@ export const playmakerApi = createApi({
         return query
       }
     }),
-    getEntitiesByDepth: builder.query({
-      query: (arg) => {
-        const { name, populate, depthField } = arg;
-        let query = `${pluralize(name.replace('_', '-'))}`
-        if (populate) query += '?populate[0]=' + depthField;
-        console.log("query");
-        console.log(query);
-        return query
-      }
-    }),
-    getEntitiesByDepth2: builder.query({
-      query: (arg) => {
-        const { name, populate, depthField1, depthField2 } = arg;
-        let query = `${pluralize(name.replace('_', '-'))}`
-        if (populate) query += '?populate[' + depthField1 + '][populate][0]=' + depthField2;
-        console.log("query");
-        console.log(query);
-        return query
-      }
-    }),
     getNestedEntities: builder.query({
       query: (arg) => {
         const { name, populate, fields } = arg;
@@ -199,8 +179,6 @@ export const playmakerApi = createApi({
 export const {
   useGetEntityQuery,
   useGetEntitiesQuery,
-  useGetEntitiesByDepthQuery,
-  useGetEntitiesByDepth2Query,
   useGetNestedEntitiesQuery,
   useGetEntitiesByFieldsQuery,
   useGetEntitiesByFieldQuery,
