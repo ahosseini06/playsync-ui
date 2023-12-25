@@ -6,7 +6,7 @@ import { useGetEntitiesQuery } from "./services/playmaker";
 
  function App() {
   const {data: t} = useGetEntitiesQuery({name: 'tournaments', populate: true});
-
+  console.log(t)
   return (
     <ChakraProvider>
       
