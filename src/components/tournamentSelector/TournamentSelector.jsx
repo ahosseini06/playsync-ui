@@ -5,7 +5,9 @@ const TournamentSelector = () => {
     const {data: t} = useGetEntitiesQuery({name: 'tournaments', populate: true});   
     console.log(t)
   return (
-    <div> {t && t.data.map(tournament => <p>{tournament.attributes.name}</p>)} </div>
+    <div> {t && t.data.map(tournament => <p>{tournament.attributes.name}</p>)} 
+          {t && t.data.map(tournament => <p>{tournament.id}</p>)} 
+    </div>
   )
 }
 
