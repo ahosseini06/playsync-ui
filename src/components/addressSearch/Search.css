@@ -1,0 +1,49 @@
+.input-wrapper{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    padding: 0 15px;
+    font-family: 'Inter', sans-serif;
+}
+.address-input{
+    color: #673AB7;
+    width: 100%;
+    height: 100%;
+}
+
+.address-input::placeholder{
+    color:  #B395E8;
+    opacity: 1; /* Firefox */
+  }
+  
+.address-input::-ms-input-placeholder { /* Edge 12 -18 */
+    color:  #B395E8;
+  }
+
+
+.search-result{
+    padding: 7px 15px;
+    height: fit-content;
+    color: black;
+    font-size: x-small;
+}
+
+.search-result:hover{
+    background-color: #efefef;
+    color: #673AB7;
+}
+
+.results-list{
+    width:100%;
+    background-color: white;
+    color: #673AB7;
+    display:flex;
+    flex-direction: column;
+    border-radius: 5px;
+    max-height: 100px;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+}

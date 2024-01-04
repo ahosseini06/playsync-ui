@@ -1,0 +1,184 @@
+
+.date-picker {
+  width: 100%; /* Adjust width as needed */
+}
+
+.input-wrapper{
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  padding: 0 15px;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.date-input{
+  color: #673AB7;
+  width: 100%;
+}
+.date-input::placeholder{
+  color:  #B395E8;
+  opacity: 1; /* Firefox */
+}
+
+.date-input::-ms-input-placeholder { /* Edge 12 -18 */
+  color:  #B395E8;
+}
+
+.date-body{
+  user-select: none;
+  margin-top: 10px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#date-icon{
+  justify-self: end;
+  margin-right: 5px;
+  color: #D1C4E9;
+}
+
+
+.navigation {
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+  font-family: 'Alumni Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color:#673AB7;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.navigate{
+  color: #B395E8;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.navigate:hover{
+  color: #673AB7;
+  background-color: #d1c4e92f;
+  transition: all 0.3s ease-in-out;
+}
+.navigate.forward{
+  justify-self: end;
+}
+.navigate.backward{
+  justify-self: start;
+}
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dates-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.weekday{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  color: #2B1856;
+  font-weight: 400;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.date {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  font-size: 0.8rem;
+  padding: 0.35rem;
+  margin: 0.1rem;
+  color:#757575;
+  transition: all 0.2s ease-in-out;
+}
+.date:hover {
+  background-color: #d1c4e92f;
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+}
+.date.selected {
+  background-color: #673AB7;
+  color: #B395E8;
+  font-weight: 600;
+  width: 100%;
+  padding: 0.35rem;
+  margin: 0.1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.date.selected:hover{
+  background-color: #d73e3e;
+  color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: url('./assets/icons8-delete-20.png'), auto;
+}
+
+.actions {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions button {
+  background-color: #D1C4E9;
+  border: none;
+  border-radius: 5px;
+  color: #673AB7;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s ease-in-out;
+}
+.actions button:hover {
+  background-color: #d73e3e;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.r{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+}
+.c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

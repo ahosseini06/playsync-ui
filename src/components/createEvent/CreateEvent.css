@@ -1,0 +1,15 @@
+::placeholder {
+    color:  #D1C4E9;
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color:  #D1C4E9;
+  }
+number-input:focus,
+number-input-field:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}

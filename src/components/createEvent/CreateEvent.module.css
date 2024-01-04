@@ -1,0 +1,203 @@
+.container{
+    width: 100%;
+    padding: 1.5rem;
+    padding-top: 0.9rem;
+}
+.input{
+    border-color: #D1C4E9;
+    color: #D1C4E9;
+    font-weight: 500;
+    border-width: 2px;
+    padding: 0.3rem;
+    padding-left: 0.7rem;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    margin: 1.5rem 0;
+    margin-top:0;
+}
+.input::placeholder {
+    color:  #d1c4e984;
+    opacity: 1; /* Firefox */
+  }
+  
+.input::-ms-input-placeholder { /* Edge 12 -18 */
+    color:  #d1c4e982;
+  }
+.input:hover{
+    background-color: #1f0f41;
+}
+
+.drop-down{
+    background-color: white;
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    color: #673AB7;
+    border-radius: 5px;
+    height: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+}:focus{
+    outline: none;
+}
+.num-input{
+    border-radius: 5px;
+    height: 40px;
+    color:#673AB7;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.3s ease-in-out;
+}
+.num-input:focus{
+    outline: none;
+    border: none;
+}
+.input:focus{
+    border-color: white;
+} 
+
+.r{
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+.c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 50%
+}
+.fable{
+    display: flex;
+    gap:0.2rem;
+    color: white;
+    font-size: 0.9rem;
+}
+.fable-disabled{
+    display: flex;
+    gap:0.2rem;
+    color: grey;
+    font-size: 0.9rem
+}
+.checkbox{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color:white;
+    color: white;
+    border-radius: 3px;
+    font-weight: 800;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.checkbox:hover{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color:#D1C4E9;
+    color: #D1C4E9;
+    border-radius: 3px;
+    font-weight: 800;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.checkbox-checked{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color:#E040FB;
+    color: white;
+    border-radius: 3px;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.checkbox-disabled{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color:#9e94af;
+    color: #9e94af;
+    border-radius: 3px;
+    font-weight: 800;
+    user-select: none;
+    cursor: not-allowed;
+    transition: all 0.1s ease-in-out;
+}
+
+.info-container{
+    display: flex;
+    flex-direction:column;
+    gap:0.2rem;
+    width:100%;
+    padding:0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius:15px;
+    background: rgb(209,196,233);
+    background: linear-gradient(176deg, rgba(209, 196, 233, 0.067) 0%, rgba(209, 196, 233, 0.040) 100%);
+}
+.section-heading{
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #d1c4e9b9;
+    font-family: 'Alumni Sans', sans-serif;;
+    margin-bottom: 0.5rem;
+    align-self: center;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.venue-list{
+    /* column flex box with a 0.2rem gap
+    and a max height of 10rem */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 10rem;
+    overflow-y: scroll;
+}
+
+.btn{
+    margin-left: 10px;
+    font: 'Inter', sans serif;
+    font-size: 0.8rem;
+    height: 40px;
+    background-color: #D1C4E9;
+    border-radius: 5px;
+    color: #673AB7;
+    font-weight: 500;
+    line-height: 1.1;
+    width: 45%;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn:hover{
+    background-color: #b3a8c8;
+    transition: all 0.15s ease-in-out;
+}
