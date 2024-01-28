@@ -5,6 +5,7 @@ import { getLocationAutomplete } from '../../services/locationIQ'
 
 
 const SearchBar = ({ setResults, selectedAddress, setSelectedAddress, filled, updateName, input, setInput }) => {
+  
   const checkEndings = [
     " ",
     ",",
@@ -51,6 +52,7 @@ const SearchBar = ({ setResults, selectedAddress, setSelectedAddress, filled, up
     "center"
     // Add more common street address endings as needed
   ];
+
   function hasEnding(value) {
     for (let i = 0; i < checkEndings.length; i++) {
       if (value.toLowerCase().endsWith(checkEndings[i])) {
@@ -78,7 +80,6 @@ const SearchBar = ({ setResults, selectedAddress, setSelectedAddress, filled, up
       console.log(results)
       setResults(results)
     }
-    console.log(selectedAddress? "address selected" : "address is not seleceted")
   }
 
   return (

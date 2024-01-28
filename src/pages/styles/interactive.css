@@ -1,0 +1,11 @@
+.interactive {
+    background: rgb(255, 255, 255);
+    
+    mix-blend-mode: overlay;
+    background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(224, 224, 224, 0.917) 15%, rgba(214,214,214,0) 50%);
+    width: 2000px;
+    height: 2000px;
+    border-radius: 100%;
+
+}

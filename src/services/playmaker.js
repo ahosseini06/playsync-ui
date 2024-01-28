@@ -9,6 +9,9 @@ export const playmakerApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_DOMAIN}/api/`,
     prepareHeaders: (headers, { getState }) => {
+      if(localStorage.getItem('user')){
+        headers.set('Authorization', `Bearer ${(localStorage.getItem('user'))}`);
+      }
       return headers
     },
   }),
@@ -23,9 +26,14 @@ export const playmakerApi = createApi({
       query: (arg) => {
         const { name, populate } = arg;
         let query = `${pluralize(name.replace('_', '-'))}`
-        if (populate) query += '?populate=*'
+        if (populate) query += '?populate=*';
         console.log(query);
-        return query
+        return query;
+      }
+    }),
+    getUserEntities: builder.query({
+      query: () => {
+        return 'users/me'
       }
     }),
     getNestedEntities: builder.query({
@@ -74,6 +82,19 @@ export const playmakerApi = createApi({
         } else if (populate !== undefined) {
           query += '&' + populate
         }
+        return query
+      },
+      providesTags: (result, error, arg) => [{ type: arg.name, id: 'LIST' }],
+    }),
+    getEntitiesByRelation: builder.query({
+      query: (arg) => {
+        const { name, relations, value} = arg;
+        let query = `${pluralize(name.replace('_', '-'))}?filters`
+        for(let i = 0; i<relations.length; i++){
+          query += `[${pluralize(relations[i].replace('_', '-'))}]`
+        }
+        query += `[$eq]=${value}`
+        console.log(query)
         return query
       },
       providesTags: (result, error, arg) => [{ type: arg.name, id: 'LIST' }],
@@ -179,9 +200,11 @@ export const playmakerApi = createApi({
 export const {
   useGetEntityQuery,
   useGetEntitiesQuery,
+  useGetUserEntitiesQuery,
   useGetNestedEntitiesQuery,
   useGetEntitiesByFieldsQuery,
   useGetEntitiesByFieldQuery,
+  useGetEntitiesByRelationQuery,
   useLoginMutation,
   useRegisterMutation,
   useAddEntityMutation,

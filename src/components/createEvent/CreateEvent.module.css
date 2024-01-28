@@ -16,7 +16,6 @@
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     width: 100%;
-    margin: 1.5rem 0;
     margin-top:0;
 }
 .input::placeholder {
@@ -200,4 +199,11 @@
 .btn:hover{
     background-color: #b3a8c8;
     transition: all 0.15s ease-in-out;
+}
+
+.input-container{
+    border-radius: 5px;
+    border-color: #D1C4E9;
+    border-width: 2px;
+    margin-bottom: 0.8rem;
 }
