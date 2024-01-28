@@ -65,7 +65,10 @@ const Login = () => {
   };
 
   return (
+    <>
+    
     <div className={styles.login}>
+    <div className={styles[`background`]}>
      <div
       className="interactive"
       style={{
@@ -74,6 +77,7 @@ const Login = () => {
         top: position.top,
       }}
     />
+    </div>
     <div className={styles.container}>
       <div className={styles.header}>Administrator Login</div>
       <div className={styles[`login-form`]}>
@@ -109,6 +113,7 @@ const Login = () => {
       </div>
       </div>
     </div>
+    </>
   );
 };
 
