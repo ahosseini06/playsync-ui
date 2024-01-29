@@ -23,6 +23,10 @@ input::-ms-input-placeholder { /* Edge 12 -18 */
 }
 .fill{
  
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 237, 195, 0.63);
   mix-blend-mode: overlay;
+}
+
+html {
+	overflow: hidden;
 }

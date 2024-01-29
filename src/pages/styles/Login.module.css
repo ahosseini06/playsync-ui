@@ -19,8 +19,9 @@
     height: 100vh;
     position: absolute;
     transform: scale(1.007);
-    filter: blur(2px);
+    overflow: hidden;
 }
+
 .img{
     display: flex;
     justify-self: center;
@@ -34,9 +35,10 @@
     z-index: 0;
     position: absolute;
     transform: scale(1.007);
-    filter: blur(3px);
-
+    filter: blur(2px);
+    overflow: hidden
 }
+
 .login{
     display: flex;
     flex-direction: column;
@@ -44,6 +46,7 @@
     width: 100%;
     height: 100vh;
     background-color: #421661;
+    overflow: hidden;
 }
 
 .header{
@@ -71,11 +74,26 @@
     flex-direction: column;
     align-items: center;
     width: 25%;
-    height: 60%;
-    background-color:#241448c5;
+    padding-bottom: 2rem;
+    background-color:#24144840;
     z-index: 1;
     border-radius:1rem;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    backdrop-filter: blur(5px);
+}
+.container-wide{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding-bottom: 2rem;
+    background-color:#24144840;
+    z-index: 1;
+    border-radius:1rem;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    backdrop-filter: blur(5px);
 }
 
 .login-form{
@@ -84,11 +102,31 @@
     align-items: center;
     gap: 1rem;
     justify-content: center;
-    width: 80%;
+    width: 85%;
+    height: 80%;
+    margin-top: 1rem;
+}
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    gap: 1rem;
     height: 80%;
     margin-top: 1rem;
 }
 
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+
+}
 
 .input-wrapper{
     display: flex;
@@ -130,7 +168,31 @@
 }
 
 .login-btn:hover{
-    background-color: #00b521;
+    background-color: #feb22f;
+    color: snow;
+    transition: all 0.3s ease-in-out;
+} 
+
+.signup-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #673AB7;
+    color:#D1C4E9;;
+    font-family: 'Alumni sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+}
+
+.signup-btn:hover{
+    background-color: #feb22f;
     color: snow;
     transition: all 0.3s ease-in-out;
 }  
@@ -140,4 +202,14 @@
     justify-self: center;
     align-self: center;
     color: red
+}
+
+.bottom-link-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.3rem;
+    color: snow;
 }

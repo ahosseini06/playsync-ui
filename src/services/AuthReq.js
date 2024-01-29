@@ -33,7 +33,7 @@ export const login = async (identifier, password) => {
 export const register = async (username, email, password) => {
     try {
     // Make a request to the Strapi register endpoint
-    const response = await fetch('http://localhost:1337/auth/local/register', {
+    const response = await fetch('http://localhost:1337/api/auth/local/register', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -60,12 +60,12 @@ export const register = async (username, email, password) => {
         return token;
     } else {
         // If the register was unsuccessful, return null
-        return null;
+        return "";
     }
     } catch (error) {
     console.error('Error during register:', error);
     // Handle the error as needed
-    return null;
+    return "";
     }
 };
 

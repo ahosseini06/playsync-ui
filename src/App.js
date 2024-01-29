@@ -25,6 +25,10 @@ import useLocalStorage from './hooks/useLocalStorage';
       element: <Login />,
     },
     {
+      path: "",
+      element: <Dashboard />,
+    },
+    {
       path: "/logout",
       element: <Logout  />,
     },
@@ -42,6 +46,7 @@ import useLocalStorage from './hooks/useLocalStorage';
     
     
       <ChakraProvider>
+        <title>Playmaker</title>
       <div className="container" style={{ padding: 0, width: "100%", margin: 0, maxWidth: "100%" }}>
         <RouterProvider router={router} />
       </div>
