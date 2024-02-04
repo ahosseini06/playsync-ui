@@ -2,22 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { useGetEntitiesByRelationQuery, useUpdateEntityMutation } from '../../services/playmaker';
 import styles from './TournamentSelector.module.css'
 import { Button } from '@chakra-ui/react';
+import TournamentListItem from '../tournamentListItem/TournamentListItem';
 
-const TournamentSelector =  ({tournaments, onEdit, setShow}) => {
-  // fetch all tournaments that belong to user
-
-  // remving a tournament
-  const [updateEntity] = useUpdateEntityMutation();
-  const onRemove = (id) => {
-    updateEntity({name: "tournaments", id: id, body: {data:{status: "FINISHED"}}});
-    // reload window 
-    window.location.reload();
-  }
+const TournamentSelector =  ({tournaments, onView, onEdit}) => {
 
   return (
-    <div> 
-      {/* filter out tournaments that are finished, map remaining tournaments to an information row with button options*/}
-    
+    <div className={styles[`list-container`]}> 
+    {/*table header*/}
+      <div className={styles[`list-header`]}>
+        <div className={styles[`list-datum`]}>Status</div>
+        <div className={styles[`list-datum`]}>Name</div>
+        <div className={styles[`list-datum`]}>Stage</div>
+        <div className={styles[`list-datum`]}>Start Date</div>
+        <div className={styles[`list-datum`]}>Start Date</div>
+        <div className={styles[`list-datum`]}>Actions</div>
+      </div>
+
+    {/*table body*/}
+      <div className={styles[`list-body`]}>
+        
+        {tournaments && tournaments.data.map((t, i) => 
+          <TournamentListItem key={i} tournament={t} onView={onView} onEdit={onEdit} onRemove={()=>null}/>
+        )}
+
+      </div>
     </div>
   )
 }

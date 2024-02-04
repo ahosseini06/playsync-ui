@@ -1,0 +1,20 @@
+.list-item{
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.17);
+    border-radius: 0.5rem;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.list-datum{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+}

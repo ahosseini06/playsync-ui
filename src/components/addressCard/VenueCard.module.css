@@ -10,6 +10,7 @@
     width: 38%;
     height: 100%;
     color: #673AB7;
+    background-color: white;
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
     display: flex;
@@ -17,6 +18,9 @@
     padding-right: 0.4rem;
     overflow: scroll;
     transition: all 0.3s ease-in-out;
+}
+.input-card{
+    all: unset;
 }
 .name-card:hover{
     height: 40px;

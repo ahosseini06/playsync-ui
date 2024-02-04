@@ -25,8 +25,12 @@ const Login = () => {
   // form state variables
   const [loginFailed, setLoginFailed] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [identifier, setIdentifier] = useState("");
+  const [identifier, setIdentifier] = useState(localStorage.getItem("email")? localStorage.getItem("email") : "");
   const [pass, setPass] = useState("");
+
+  //loading state variable
+  const [loading, setLoading] = useState(false);
+  
 
   //ui functions
     // mouse interaction - translate x,y values to css positon (top, left) values.
@@ -77,10 +81,9 @@ const Login = () => {
   
   //backend functions
     // login function
-  const onSubmit = async () => {
-    
-    console.log("identifier", identifier)
-    console.log("pass", pass)
+  const onSubmit = async () => { 
+    setLoading(true); 
+    localStorage.removeItem("email");
     localStorage.setItem("user", "");
     const userToken = await login(identifier, pass);
     if (identifier && pass && userToken) {
@@ -90,13 +93,14 @@ const Login = () => {
       updateProgress();
       setLoginFailed(true);
       setPass("");
+      setLoading(false);
     }
   };
 
 
 
   return (
-  <>
+  
     
     <div className={styles.login}>
       {/*mouse interaction glow*/}
@@ -108,7 +112,7 @@ const Login = () => {
           top: position.top,
         }}
       />
-   
+
       {/*input field progress bar interaction glow*/}
       <div className="fill" style={{transition: "all 0.6s ease-in-out", position: "absolute", display: "flex", height: "100%", color: "black", filter: "blur(10px)", width: `${progress}%`}}></div>
       <div className="fill" style={{transition: "all 0.6s ease-in-out", position: "absolute", display: "flex", height: "100%", color: "black", filter: "blur(10px)", width: `${progress}%`, alignSelf: "end"}}></div>
@@ -168,11 +172,11 @@ const Login = () => {
           {/*onSubmit function called on click*/}
           <button className={styles[`login-btn`]}onClick={onSubmit} onMouseEnter={() => setProgress(50)} onMouseLeave={()=> updateProgress()}>Login</button>
           {/*bottom link - signup*/}
-          <div className={styles[`bottom-link-container`]}>Don't have an account?  <strong><a style={{textDecoration:"underline"}} href="/signup">Sign Up</a></strong></div>
+          <div className={styles[`bottom-link-container`]}>Don't have an account?  <strong><a style={{textDecoration:"underline"}} href="/signup" onClick={()=>localStorage.removeItem("email")}>Sign Up</a></strong></div>
         </div>
       </div>
     </div>
-  </>
+  
   );
 };
 

@@ -7,7 +7,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-import Logout from './pages/Logout';
 import { UserProvider } from './UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 
@@ -27,10 +26,6 @@ import useLocalStorage from './hooks/useLocalStorage';
     {
       path: "",
       element: <Dashboard />,
-    },
-    {
-      path: "/logout",
-      element: <Logout  />,
     },
     {
       path: "/signup",

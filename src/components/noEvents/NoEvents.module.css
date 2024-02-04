@@ -5,13 +5,7 @@
     align-items: center;
     justify-content: center;
     color: #673AB7;
-    /* Add the background image */
-    background-image: url('assets/bg.png');
-
-    /* Set background size, repeat, and position if needed */
-    background-size:1000px; /* Adjust this as needed */
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: whitesmoke;
 }
 
 .heading{

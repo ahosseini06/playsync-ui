@@ -8,8 +8,8 @@ export const login = async (identifier, password) => {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-    "identifier": identifier,
-    "password": password
+        "identifier": identifier,
+        "password": password
     });
 
     var requestOptions = {
@@ -104,6 +104,52 @@ export const getUserInfo = async (token, field) => {
         const result = await response.json();
         console.log("R", result);
         return result;
+    } catch (error) {
+        console.log('error', error);
+        // Handle the error or return a default value
+        return null;
+    }
+};
+
+export const isUsernameAvailable = async (username) => {
+    var myHeaders = new Headers();
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    const query = `http://localhost:1337/api/is-username-available/${username}`;
+
+    try {
+        const response = await fetch(query, requestOptions);
+        const result = await response.json();
+        console.log("R", result);
+        return result;
+    } catch (error) {
+        console.log('error', error);
+        // Handle the error or return a default value
+        return null;
+    }
+};
+export const isEmailAvailable = async (email) => {
+    var myHeaders = new Headers();
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    const query = `http://localhost:1337/api/is-email-available/${email}`;
+
+    try {
+        const response = await fetch(query, requestOptions);
+        const result = await response.json();
+        console.log("R", result);
+        return result;
+
     } catch (error) {
         console.log('error', error);
         // Handle the error or return a default value

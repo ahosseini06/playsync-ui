@@ -17,6 +17,7 @@ const VenueCard = ({venueId, address, name, onRemove, updateName}) => {
 
   return (
     <div className={styles[`venue-card`]}>
+
         <input 
         onMouseEnter={()=> !haveFocused && setToolTipVisible(true)} 
         onMouseLeave={()=> setToolTipVisible(false)} 
@@ -26,6 +27,7 @@ const VenueCard = ({venueId, address, name, onRemove, updateName}) => {
         onChange={(e) => { updateVanueName(e.target.value);}}
         placeholder='Enter nickname'>
         </input>
+
         {toolTipVisible && <label className={styles.tooltip}>Click to edit</label>}
         <div className={styles[`address-card`]}>
             <div className={styles.address}>
