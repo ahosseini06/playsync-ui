@@ -17,10 +17,10 @@ const Status = ({status}) => {
             <MdOutlineRadioButtonChecked/>
             {capitlize(status)}
         </div> : 
-        status === "finished" ? 
+        status === "complete" ? 
         <div style={{display:"flex", alignItems:"center", justifyContent:"center", gap: "0.1rem", color:"grey"}}>
             <FaCalendarCheck></FaCalendarCheck>
-            <p>Complete</p>
+            <p>{capitlize(status)}</p>
         </div> : 
         <div style={{display:"flex", alignItems:"center", justifyContent:"center", gap: "0.1rem", color:"green"}}>
             <MdOutlineRadioButtonChecked/>

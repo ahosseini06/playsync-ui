@@ -27,7 +27,7 @@ const SignUp = () => {
   // form state variables
   const [errors, setErrors] = useState({name: "", username: "", email: "", password: "", passwordMatch: "", missing: ""});
   const [showPassword, setShowPassword] = useState(false);
-  // from input fields
+  // from input field state variables
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +37,7 @@ const SignUp = () => {
   // loading state variables
   const [loading, setLoading] = useState(false);
   const [checkingUsername, setCheckingUsername] = useState(false);
-
+  
   const [accountExists, setAccountExists] = useState(false);
 
   //ui functions
@@ -152,6 +152,19 @@ const SignUp = () => {
   useEffect(() => {
     updateProgress();
   }, [email, password, name, username, confirmPassword]);
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter key was pressed. Run your function.");
+        event.preventDefault();
+        onSubmit();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
   
   //backend functions
     // login function

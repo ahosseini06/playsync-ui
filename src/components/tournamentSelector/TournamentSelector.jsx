@@ -13,8 +13,7 @@ const TournamentSelector =  ({tournaments, onView, onEdit}) => {
         <div className={styles[`list-datum`]}>Status</div>
         <div className={styles[`list-datum`]}>Name</div>
         <div className={styles[`list-datum`]}>Stage</div>
-        <div className={styles[`list-datum`]}>Start Date</div>
-        <div className={styles[`list-datum`]}>Start Date</div>
+        <div className={styles[`list-datum`]}>Dates</div>
         <div className={styles[`list-datum`]}>Actions</div>
       </div>
 

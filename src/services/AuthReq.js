@@ -86,7 +86,7 @@ export const getUserId = async (token) => {
     .catch(error => console.log('error', error));
 };
 
-export const getUserInfo = async (token, field) => {
+export const getUser = async (token) => {
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 
@@ -96,13 +96,11 @@ export const getUserInfo = async (token, field) => {
         redirect: 'follow'
     };
 
-    const query = `http://localhost:1337/api/users/me${field ? "?populate=" + pluralize(field) : ""}`;
-    console.log(query);
+    const query = `http://localhost:1337/api/users/me`;
 
     try {
         const response = await fetch(query, requestOptions);
         const result = await response.json();
-        console.log("R", result);
         return result;
     } catch (error) {
         console.log('error', error);

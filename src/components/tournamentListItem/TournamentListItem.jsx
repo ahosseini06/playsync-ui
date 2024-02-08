@@ -14,17 +14,6 @@ const TournamentListItem = ({tournament, onView, onEdit, onRemove}) => {
         <div className={styles[`list-datum`]}>actions</div>
         <div className={styles[`list-datum`]}>actions</div>
     */
-    function getSimpleStatus(status){
-        if(status==="PRE-EVENT"){
-            console.log("s")
-            return "scheduled"
-        } else if(status==="FINISHED"){
-            console.log("f")
-            return "finished"
-        }
-        console.log('a')
-        return "active"
-    }
 
     const getStage = (status) => {
         if(status==="PRE-EVENT"){
@@ -37,7 +26,7 @@ const TournamentListItem = ({tournament, onView, onEdit, onRemove}) => {
     return (
         <div className={styles[`list-item`]}>
             <div className={styles[`list-datum`]}>
-                <Status status={getSimpleStatus(tournament.attributes.status)}></Status>
+                <Status status={tournament.attributes.status}></Status>
             </div>
 
             <div className={styles[`list-datum`]}>
@@ -45,25 +34,21 @@ const TournamentListItem = ({tournament, onView, onEdit, onRemove}) => {
             </div>
 
             <div className={styles[`list-datum`]}>
-            {getStage(tournament.attributes.status)}
+            {tournament.attributes.stage}
             </div>
 
             <div className={styles[`list-datum`]}>
-                Start Date{tournament.attributes.startDate}
-            </div>
-
-            <div className={styles[`list-datum`]}>
-                End Date{tournament.attributes.startDate}
+                Start Date{tournament.attributes.dates}
             </div>
 
             <div className={styles[`list-datum`]}>
                 <div className={styles[`btn-group`]}>
-                    <button className={styles.view} onClick={onEdit}>View</button>
+                    <button className={styles.view} onClick={()=> onView(tournament)}>View</button>
                     <button className={styles.edit} onClick={onEdit}>Edit</button>
                     <button className={styles.remove} onClick={onRemove}>Remove</button>
                 </div>
             </div>
-
+            
         </div>
     )
 }

@@ -83,10 +83,11 @@ const Login = () => {
     // login function
   const onSubmit = async () => { 
     setLoading(true); 
-    localStorage.removeItem("email");
     localStorage.setItem("user", "");
     const userToken = await login(identifier, pass);
     if (identifier && pass && userToken) {
+      console.log(identifier, pass, userToken);
+      localStorage.removeItem("email");
       localStorage.setItem("user", userToken);
       window.location.href = "/dashboard";
     } else {
