@@ -61,7 +61,7 @@ const SearchBar = ({ setResults, selectedAddress, setSelectedAddress, filled, up
     }
     return false; // Return false if the string doesn't end with any suffix in the array
   }
-  
+
   const filterSearch = async (value) => {
     console.log("key")
     console.log(value)

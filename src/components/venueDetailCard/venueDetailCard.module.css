@@ -1,0 +1,24 @@
+.card{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    background-color: white;
+    gap: 0.5rem;
+    border-radius: 5px;
+}
+.column-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.title{
+    font-size: 16px;
+    color: #1E113C;
+    font-family: 'Alumni Sans', sans-serif;
+    font-weight: 500;
+}
+.subtitle{
+    color: #757575;
+    font-size: 12px;
+    padding-left: 0.5rem;
+}

@@ -14,24 +14,20 @@ import SearchBar from '../addressSearch/SearchBar'
 import SearchResultsList from '../addressSearch/SearchResultsList'
 import DatePicker from '../datePIcker/DatePicker'
 import VenueCard from '../addressCard/VenueCard'
-const CreateEvent = () => {
+import ProgressBar from '../progressBar/ProgressBar'
+const CreateEvent = ({stage, poolPlay, setPoolPlay,crossOver, setCrossOver,venues, setVenues,numPools, setNumPools,selectedDates, setSelectedDates, tournamentName, setTournamentName, numTiers, setNumTiers}) => {
     // constants
     const minPoolSize = 3;
     // get all bracket types
     const {data: bTypes} = useGetEntitiesQuery({name: 'bracket-type', populate: true})
-    // Tournament information state variables
-    const [poolPlay, setPoolPlay] = useState(false);
-    const [crossOver, setCrossOver] = useState(false);
-    const [venues, setVenues] = useState([])
-    const [numPools, setNumPools] = useState(4);
-    const [selectedDates, setSelectedDates] = useState([]);
-    
-    
-
 
     // Tournament information front end functions
     const incrementNumPools = () => setNumPools(numPools + 1);
     const decrementNumPools = () => numPools > minPoolSize && setNumPools(numPools - 1);
+
+    const incrementNumTiers = () => setNumTiers(numTiers+1);
+    const decrementNumTiers = () => numTiers > 1 && setNumTiers(numTiers-1);
+
     const addVenue = () => {
         setVenues([...venues, selectedAddress])
         setSelectedAddress(null);
@@ -62,10 +58,21 @@ const CreateEvent = () => {
     const updateVenue = (address, name, numCourts) => {
         console.log(address + name + numCourts);
     }
-    const push = ()=> {
-        console.log("pushing to backend")
-        // if (neccesary state variables have values, push info to tournament,
-        // change show modal variable to the next modal avaiable - need to get this variable from parent
+    const getProgressValue = (i) => {
+        if(i === 1)
+            return 9
+        
+        if(i===2)
+            return 40
+
+        if(i===3)
+            return 70
+
+        return 100
+    }
+    const handleChange = (e) => {
+        console.log("event name", e.target.value)
+        setTournamentName(e.target.value);
     }
 
     //Adress Stuff
@@ -78,14 +85,18 @@ const CreateEvent = () => {
     
 
   return (
+    <>
     <div className={styles.container}>
         <head>
             <style>
             @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100;200;300;400;500;600&family=Inter:wght@200;300;400;500;600;900&family=Oswald&display=swap');
             </style>
         </head>
+        <ProgressBar value={getProgressValue(stage)}/>
+        {stage === 1 &&
+        <>
         <div className={styles[`input-container`]}>
-            <input className={styles.input} placeholder='Event Name' />
+            <input className={styles.input} placeholder='Event Name' value={tournamentName} onChange={(e) => handleChange(e)}/>
         </div>
             <div className={styles.r}>
 
@@ -125,7 +136,7 @@ const CreateEvent = () => {
                 <div style={{color: "white", fontSize: "0.9rem"}}>
                 
                 <label>Ideal pool size:</label>
-                <NumberInput style={{backgroundColor:"white", borderRadius:"10px"}}value={numPools} min={3}>
+                <NumberInput style={{backgroundColor:"white", borderRadius:"10px"}} value={numPools} min={3}>
                 <NumberInputField className={styles[`num-input`]} />
                 <NumberInputStepper>
                     <NumberIncrementStepper color="purple.600" onClick={incrementNumPools}/>
@@ -145,11 +156,11 @@ const CreateEvent = () => {
                     </select>
                     <div style={{color: "white", fontSize: "0.9rem"}}>
                     <label>Number of tiers:</label>
-                    <NumberInput style={{backgroundColor:"white", borderRadius:"5px"}} defaultValue={1} min={1}>
+                    <NumberInput style={{backgroundColor:"white", borderRadius:"5px"}} value={numTiers} min={1}>
                     <NumberInputField className={styles[`num-input`]}/>
                     <NumberInputStepper>
-                        <NumberIncrementStepper color="purple.600"/>
-                        <NumberDecrementStepper color="purple.600"/>
+                        <NumberIncrementStepper color="purple.600" onClick={incrementNumTiers}/>
+                        <NumberDecrementStepper color="purple.600" onClick={decrementNumTiers}/>
                     </NumberInputStepper>
                     </NumberInput>
                     </div>
@@ -203,7 +214,9 @@ const CreateEvent = () => {
             {/* end column 2 */}
         </div>
         {/* end of row */}
+        </>}
     </div>
+    </>
     /* end of conainer */
   )
 }
