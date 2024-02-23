@@ -1,8 +1,9 @@
 import { filter } from "@chakra-ui/react";
 import pluralize from "pluralize";
 
-
+const baseUrl= `${process.env.REACT_APP_API_DOMAIN}/api`
 export const login = async (identifier, password) => {
+    console.log("baseUrl", baseUrl);
     var rValue=null;
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -20,7 +21,7 @@ export const login = async (identifier, password) => {
     };
 
     try {
-        const response = await fetch("http://localhost:1337/api/auth/local/", requestOptions);
+        const response = await fetch(`${baseUrl}/auth/local/`, requestOptions);
         const result = await response.json();
         rValue = result.jwt;
     } catch (error) {
@@ -33,7 +34,7 @@ export const login = async (identifier, password) => {
 export const register = async (username, email, password) => {
     try {
     // Make a request to the Strapi register endpoint
-    const response = await fetch('http://localhost:1337/api/auth/local/register', {
+    const response = await fetch(`${baseUrl}/auth/local/register`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ export const getUserId = async (token) => {
     redirect: 'follow'
     };
 
-    fetch("http://localhost:1337/api/users/me", requestOptions)
+    fetch(`${baseUrl}/users/me`, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result.id))
     .catch(error => console.log('error', error));
@@ -96,7 +97,7 @@ export const getUser = async (token) => {
         redirect: 'follow'
     };
 
-    const query = `http://localhost:1337/api/users/me`;
+    const query = `${baseUrl}/users/me`;
 
     try {
         const response = await fetch(query, requestOptions);
@@ -118,7 +119,7 @@ export const isUsernameAvailable = async (username) => {
         redirect: 'follow'
     };
 
-    const query = `http://localhost:1337/api/is-username-available/${username}`;
+    const query = `${baseUrl}/is-username-available/${username}`;
 
     try {
         const response = await fetch(query, requestOptions);
@@ -140,7 +141,7 @@ export const isEmailAvailable = async (email) => {
         redirect: 'follow'
     };
 
-    const query = `http://localhost:1337/api/is-email-available/${email}`;
+    const query = `${baseUrl}/is-email-available/${email}`;
 
     try {
         const response = await fetch(query, requestOptions);
