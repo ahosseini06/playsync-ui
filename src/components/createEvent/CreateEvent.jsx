@@ -15,7 +15,7 @@ import SearchResultsList from "../addressSearch/SearchResultsList";
 import DatePicker from "../datePIcker/DatePicker";
 import VenueCard from "../addressCard/VenueCard";
 import ProgressBar from "../progressBar/ProgressBar";
-import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
+//import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
 const CreateEvent = ({
   stage,
   poolPlay,
@@ -298,13 +298,13 @@ const CreateEvent = ({
                 gap: "0.9rem",
               }}
             >
-              {venues[0] &&
+              {/*venues[0] &&
                 venues.map((venue) => (
                   <VenueDetailCard
                     venue={venue}
                     setVenue={updateVenue}
                   ></VenueDetailCard>
-                ))}
+                ))*/}
             </div>
           </>
         )}
