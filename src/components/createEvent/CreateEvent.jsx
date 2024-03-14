@@ -90,10 +90,12 @@ const CreateEvent = ({ onClose }) => {
     setVenues(venues.filter((venue) => venue.id !== id));
   };
 
-  // Tournament information backend functions (pushing to back end)
   const updateVenue = (address, name, numCourts) => {
     console.log(address + name + numCourts);
   };
+
+  // utility functions
+  // get progress value for progress bar
   const getProgressValue = (i) => {
     if (i === 1) return 9;
 
@@ -103,8 +105,7 @@ const CreateEvent = ({ onClose }) => {
 
     return 100;
   };
-
-  // function to check if all required fields are filled in a given stage
+  // check if all fields are filled for a given form stage
   const resolveStage = (stage) => {
     if (stage === 1) {
       if (
@@ -324,7 +325,6 @@ const CreateEvent = ({ onClose }) => {
                           venueId={venue.id}
                           address={venue.addressString}
                           name={venue.name}
-                          updateName={updateVenueName}
                           onRemove={() => removeVenue(venue.id)}
                         />
                       ))}
