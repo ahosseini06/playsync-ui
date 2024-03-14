@@ -34,6 +34,8 @@ const CreateEvent = ({ onClose }) => {
   const [tournamentName, setTournamentName] = useState("");
   const [stage, setStage] = useState(1);
   const [bracketType, setBracketType] = useState();
+
+  // error handling
   const [error, setError] = useState(false);
 
   // address search state variables
@@ -142,12 +144,12 @@ const CreateEvent = ({ onClose }) => {
       console.log("submit");
       onClose();
     } else {
-      if (resolveStage(stage)) {
-        setError(false);
+      if (true || resolveStage(stage)) {
+        //setError(false);
         setStage(stage + 1);
         console.log("dates", selectedDates);
       } else {
-        setError(true);
+        //setError(true);
       }
     }
   };

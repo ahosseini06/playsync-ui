@@ -32,6 +32,7 @@ const ManageEvents = ({ onView, onEdit, onRemove }) => {
     name: "tournaments",
     populate: true,
   });
+
   console.log("tournaments", tournaments);
 
   const [display, setDisplay] = useState(tournaments);

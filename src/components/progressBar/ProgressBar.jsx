@@ -11,7 +11,7 @@ const ProgressBar = ({ value }) => {
           <p>1. Event Details</p>
         </div>
         <div className="element">
-          <p>2. Venue Details</p>
+          <p>2. Venues Details</p>
         </div>
         <div className="element">
           <p>3. Hours</p>
