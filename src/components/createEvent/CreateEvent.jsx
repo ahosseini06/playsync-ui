@@ -136,12 +136,12 @@ const CreateEvent = ({ onClose }) => {
       console.log("submit");
       onClose();
     } else {
-      if (true || resolveStage(stage)) {
-        //setError(false);
+      if (resolveStage(stage)) {
+        setError(false);
         setStage(stage + 1);
         console.log("dates", selectedDates);
       } else {
-        //setError(true);
+        setError(true);
       }
     }
   };
