@@ -1,0 +1,46 @@
+.card{
+    width: 15rem;
+    min-width: 15rem;
+    height: 250px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 2px solid rgba(209,196,233,0.21);
+    color: white;
+    background-color: #cabbeb13;
+    background-blend-mode: normal;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 0.5rem rgba(0,0,0,0.5); 
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.date{
+    font-size: 1.0rem;
+    width: 100%;
+    color: white;
+    font-family: 'inter' sans-serif;
+    background-color: #673AB7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem 0rem;
+}
+.cardBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: space-around;
+    width: 80%;
+    height: 100%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}

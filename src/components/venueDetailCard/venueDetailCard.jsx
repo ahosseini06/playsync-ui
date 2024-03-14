@@ -22,7 +22,17 @@ const VenueDetailCard = ({ venue, setVenue }) => {
         </div>
         <div />
         <div className={styles.row}>
-          <div className={styles[`number-container`]}>
+          <div className={styles[`larger-input-container`]}>
+            <div
+              style={{
+                display: "flex",
+                gap: "0.2rem",
+                color: "white",
+                fontSize: "0.9rem",
+              }}
+            >
+              <label># of Courts</label>
+            </div>
             <NumberInput
               style={{
                 backgroundColor: "white",

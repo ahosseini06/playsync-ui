@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CreateEvent.module.css";
 import "./CreateEvent.css";
 import {
@@ -8,6 +8,11 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Button,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverCloseButton,
+  PopoverHeader,
 } from "@chakra-ui/react";
 import { useGetEntitiesQuery } from "../../services/playmaker";
 import SearchBar from "../addressSearch/SearchBar";
@@ -15,24 +20,47 @@ import SearchResultsList from "../addressSearch/SearchResultsList";
 import DatePicker from "../datePIcker/DatePicker";
 import VenueCard from "../addressCard/VenueCard";
 import ProgressBar from "../progressBar/ProgressBar";
+import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
+import TimeCard from "../timeCard/TimeCard";
+
 //import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
-const CreateEvent = ({
-  stage,
-  poolPlay,
-  setPoolPlay,
-  crossOver,
-  setCrossOver,
-  venues,
-  setVenues,
-  numPools,
-  setNumPools,
-  selectedDates,
-  setSelectedDates,
-  tournamentName,
-  setTournamentName,
-  numTiers,
-  setNumTiers,
-}) => {
+const CreateEvent = ({ onClose }) => {
+  const [poolPlay, setPoolPlay] = useState(false);
+  const [crossOver, setCrossOver] = useState(false);
+  const [venues, setVenues] = useState([]);
+  const [numPools, setNumPools] = useState(4);
+  const [numTiers, setNumTiers] = useState(1);
+  const [selectedDates, setSelectedDates] = useState([]);
+  const [tournamentName, setTournamentName] = useState("");
+  const [stage, setStage] = useState(1);
+  const [bracketType, setBracketType] = useState();
+  const [error, setError] = useState(false);
+
+  //Adress Stuff
+  // address search state variables
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [searchBarFilled, setSearchBarFilled] = useState(false);
+  const [results, setResults] = useState([]);
+  const [input, setInput] = useState("");
+
+  const resolveStage = (stage) => {
+    if (stage === 1) {
+      if (
+        venues &&
+        venues.length > 0 &&
+        selectedDates &&
+        selectedDates.length > 0 &&
+        tournamentName &&
+        bracketType
+      ) {
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
+  };
+
   // constants
   const minPoolSize = 3;
   // get all bracket types
@@ -72,9 +100,11 @@ const CreateEvent = ({
     }
     venues[i] = venue;
   };
+
   const removeVenue = (id) => {
     setVenues(venues.filter((venue) => venue.id !== id));
   };
+
   // Tournament information backend functions (pushing to back end)
   const updateVenue = (address, name, numCourts) => {
     console.log(address + name + numCourts);
@@ -88,20 +118,36 @@ const CreateEvent = ({
 
     return 100;
   };
+
   const handleChange = (e) => {
     console.log("event name", e.target.value);
     setTournamentName(e.target.value);
   };
 
-  //Adress Stuff
-  // address search state variables
-  const [selectedAddress, setSelectedAddress] = useState(null);
-  const [searchBarFilled, setSearchBarFilled] = useState(false);
-  const [results, setResults] = useState([]);
-  const [input, setInput] = useState("");
+  const handleSecondaryClick = () => {
+    if (stage === 1) {
+      onClose();
+    } else {
+      setStage(stage - 1);
+    }
+  };
+  const handlePrimaryClick = () => {
+    if (stage === 4) {
+      console.log("submit");
+      onClose();
+    } else {
+      if (true || resolveStage(stage)) {
+        //setError(false);
+        setStage(stage + 1);
+        console.log("dates", selectedDates);
+      } else {
+        //setError(true);
+      }
+    }
+  };
 
   return (
-    <>
+    <div className={styles.main}>
       <div className={styles.container}>
         <head>
           <style>
@@ -202,7 +248,11 @@ const CreateEvent = ({
                 {/* bracket type information */}
                 <div className={styles[`info-container`]}>
                   <h1 className={styles[`section-heading`]}>Playoffs</h1>
-                  <select className={styles[`drop-down`]}>
+                  <select
+                    className={styles[`drop-down`]}
+                    onChange={(e) => setBracketType(e.target.value)}
+                    value={bracketType}
+                  >
                     <option value="DEFAULT" disabled selected>
                       Bracket type
                     </option>
@@ -269,7 +319,7 @@ const CreateEvent = ({
                           name={venue.name}
                           updateName={updateVenueName}
                           onRemove={() => removeVenue(venue.id)}
-                        ></VenueCard>
+                        />
                       ))}
                   </div>
                 </div>
@@ -298,18 +348,72 @@ const CreateEvent = ({
                 gap: "0.9rem",
               }}
             >
-              {/*venues[0] &&
+              {venues[0] &&
                 venues.map((venue) => (
                   <VenueDetailCard
                     venue={venue}
                     setVenue={updateVenue}
                   ></VenueDetailCard>
-                ))*/}
+                ))}
             </div>
           </>
         )}
+        {stage === 3 && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "1rem",
+                maxHeight: "30rem",
+                overflowY: "scroll",
+                flexWrap: "wrap",
+              }}
+            >
+              {selectedDates.map((d) => (
+                <TimeCard date={d}></TimeCard>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-    </>
+      <div className={styles.footer}>
+        <button
+          className={styles[`modal-btn-secondary`]}
+          onClick={handleSecondaryClick}
+        >
+          {stage === 1 ? "Cancel" : "Back"}
+        </button>
+        <Popover>
+          <PopoverTrigger>
+            <button
+              className={styles[`modal-btn-primary`]}
+              onClick={handlePrimaryClick}
+            >
+              {stage === 4 ? "Create" : "Next"}
+            </button>
+          </PopoverTrigger>
+
+          {error && (
+            <PopoverContent color="#E040FB" bg="#1E113C" borderColor="#1E113C">
+              <PopoverCloseButton />
+
+              <PopoverHeader borderColor="black">
+                Please fill out all required fields
+              </PopoverHeader>
+            </PopoverContent>
+          )}
+        </Popover>
+      </div>
+    </div>
     /* end of conainer */
   );
 };
