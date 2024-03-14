@@ -23,8 +23,8 @@ import ProgressBar from "../progressBar/ProgressBar";
 import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
 import TimeCard from "../timeCard/TimeCard";
 
-//import VenueDetailCard from "../venueDetailCard/VenueDetailCard";
 const CreateEvent = ({ onClose }) => {
+  //tournament information state variables
   const [poolPlay, setPoolPlay] = useState(false);
   const [crossOver, setCrossOver] = useState(false);
   const [venues, setVenues] = useState([]);
@@ -36,33 +36,16 @@ const CreateEvent = ({ onClose }) => {
   const [bracketType, setBracketType] = useState();
   const [error, setError] = useState(false);
 
-  //Adress Stuff
   // address search state variables
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [searchBarFilled, setSearchBarFilled] = useState(false);
   const [results, setResults] = useState([]);
   const [input, setInput] = useState("");
 
-  const resolveStage = (stage) => {
-    if (stage === 1) {
-      if (
-        venues &&
-        venues.length > 0 &&
-        selectedDates &&
-        selectedDates.length > 0 &&
-        tournamentName &&
-        bracketType
-      ) {
-        return true;
-      }
-      return false;
-    } else {
-      return false;
-    }
-  };
-
   // constants
   const minPoolSize = 3;
+
+  // fetching
   // get all bracket types
   const { data: bTypes } = useGetEntitiesQuery({
     name: "bracket-type",
@@ -84,10 +67,12 @@ const CreateEvent = ({ onClose }) => {
     setInput("");
     setResults([]);
   };
+
   // Tournament info frontend functions functions, proccessing state variables
   const updateAddress = (e) => {
     console.log(e.target.value);
   };
+
   const updateVenueName = (venue, newName) => {
     // makes changes in the state variable,
     //upates venue upon any change in the venue nickname input
@@ -119,6 +104,26 @@ const CreateEvent = ({ onClose }) => {
     return 100;
   };
 
+  // function to check if all required fields are filled in a given stage
+  const resolveStage = (stage) => {
+    if (stage === 1) {
+      if (
+        venues &&
+        venues.length > 0 &&
+        selectedDates &&
+        selectedDates.length > 0 &&
+        tournamentName &&
+        bracketType
+      ) {
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
+  };
+
+  // click functions
   const handleChange = (e) => {
     console.log("event name", e.target.value);
     setTournamentName(e.target.value);
@@ -155,7 +160,9 @@ const CreateEvent = ({ onClose }) => {
             url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100;200;300;400;500;600&family=Inter:wght@200;300;400;500;600;900&family=Oswald&display=swap');
           </style>
         </head>
+        {/* progress bar */}
         <ProgressBar value={getProgressValue(stage)} />
+        {/* stage 1*/}
         {stage === 1 && (
           <>
             <div className={styles[`input-container`]}>
@@ -339,6 +346,7 @@ const CreateEvent = ({ onClose }) => {
             {/* end of row */}
           </>
         )}
+        {/* stage 2*/}
         {stage === 2 && (
           <>
             <div
@@ -358,6 +366,7 @@ const CreateEvent = ({ onClose }) => {
             </div>
           </>
         )}
+        {/* stage 1*/}
         {stage === 3 && (
           <div
             style={{
@@ -385,6 +394,7 @@ const CreateEvent = ({ onClose }) => {
           </div>
         )}
       </div>
+      {/* footer, inside the component*/}
       <div className={styles.footer}>
         <button
           className={styles[`modal-btn-secondary`]}
