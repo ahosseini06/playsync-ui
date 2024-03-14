@@ -324,6 +324,7 @@ const CreateEvent = ({ onClose }) => {
                         <VenueCard
                           venueId={venue.id}
                           address={venue.addressString}
+                          updateName={updateVenueName}
                           name={venue.name}
                           onRemove={() => removeVenue(venue.id)}
                         />
