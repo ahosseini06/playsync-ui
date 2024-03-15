@@ -177,7 +177,7 @@ const CreateEvent = ({ onClose }) => {
       setStage(stage - 1);
     }
   };
-  const handlePrimaryClick = () => {
+  const handlePrimaryClick = async () => {
     if (stage === 4) {
       const data = {
         name: tournamentName,
@@ -190,7 +190,8 @@ const CreateEvent = ({ onClose }) => {
         pool_size: minPoolSize,
         match_time_minutes: 30
       }
-      addEntity({ name: "tournament", body: { data } });
+      const response = await addEntity({ name: "tournament", body: { data } });
+      console.log(response);
       onClose();
     } else {
       if (true || resolveStage(stage)) {
