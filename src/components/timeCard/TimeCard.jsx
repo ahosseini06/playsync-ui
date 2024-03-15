@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TimeCard.module.css";
 
-const TimeCard = ({ date, setDate }) => {
+const TimeCard = ({ date, setDate, queryDates,  setQueryDates, last }) => {
   return (
     <div className={styles.card}>
       <div className={styles.date}>{`${date.getDate()}/${
@@ -20,7 +20,12 @@ const TimeCard = ({ date, setDate }) => {
             }}
             type="time"
             value={date.startTime}
-            onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => {
+              setQueryDates({
+                ...queryDates(),
+                [`${date};pool-play;report`]: e.target.value
+              })
+            }}
           />
         </div>
         <div className={styles.container}>
@@ -35,7 +40,12 @@ const TimeCard = ({ date, setDate }) => {
             }}
             type="time"
             value={date.endTime}
-            onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => {
+              setQueryDates({
+                ...queryDates(),
+                [`${date};${last ? 'complete' : 'buffer'}`]: e.target.value
+              })
+            }}
           />
         </div>
       </div>
