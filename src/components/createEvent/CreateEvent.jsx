@@ -14,7 +14,10 @@ import {
   PopoverCloseButton,
   PopoverHeader,
 } from "@chakra-ui/react";
-import { useAddEntityMutation, useGetEntitiesQuery } from "../../services/playmaker";
+import {
+  useAddEntityMutation,
+  useGetEntitiesQuery,
+} from "../../services/playmaker";
 import SearchBar from "../addressSearch/SearchBar";
 import SearchResultsList from "../addressSearch/SearchResultsList";
 import DatePicker from "../datePIcker/DatePicker";
@@ -31,8 +34,8 @@ const CreateEvent = ({ onClose }) => {
   const [numPools, setNumPools] = useState(4);
   const [numTiers, setNumTiers] = useState(1);
   const [selectedDates, setSelectedDates] = useState([]);
-  const [queryDates, setQueryDates] = useState({})
-  const getQueryDates = () => queryDates
+  const [queryDates, setQueryDates] = useState({});
+  const getQueryDates = () => queryDates;
   const [tournamentName, setTournamentName] = useState("");
   const [stage, setStage] = useState(1);
   const [bracketType, setBracketType] = useState();
@@ -49,19 +52,19 @@ const CreateEvent = ({ onClose }) => {
   // constants
   const minPoolSize = 3;
   const monthIndices = {
-    "Jan": 0,
-    "Feb": 1,
-    "Mar": 2,
-    "Apr": 3,
-    "May": 4,
-    "Jun": 5,
-    "Jul": 6,
-    "Aug": 7,
-    "Sep": 8,
-    "Oct": 9,
-    "Nov": 10,
-    "Dec": 11
-  }
+    Jan: 0,
+    Feb: 1,
+    Mar: 2,
+    Apr: 3,
+    May: 4,
+    Jun: 5,
+    Jul: 6,
+    Aug: 7,
+    Sep: 8,
+    Oct: 9,
+    Nov: 10,
+    Dec: 11,
+  };
 
   // fetching
   // get all bracket types
@@ -143,26 +146,27 @@ const CreateEvent = ({ onClose }) => {
     }
   };
   //format dates for the tournament creation query
-  const formatQueryDates = (q) => Object.keys(q).map(dateAndStage => {
-    const date = dateAndStage.split(";")[0]
-    const stage = dateAndStage.split(";")[1]
-    const time = q[dateAndStage]
-    const datetime = new Date(
-      date.split(" ")[3],
-      monthIndices[date.split(" ")[1]],
-      date.split(" ")[2],
-      time.split(":")[0],
-      time.split(":")[1]
-    )
-    const open_check_in = dateAndStage.split(";").length > 3
-    const check_in_policy = dateAndStage.split(";")[2]
-    return {
-      datetime,
-      check_in_policy,
-      open_check_in,
-      stage_action: stage
-    }
-  })
+  const formatQueryDates = (q) =>
+    Object.keys(q).map((dateAndStage) => {
+      const date = dateAndStage.split(";")[0];
+      const stage = dateAndStage.split(";")[1];
+      const time = q[dateAndStage];
+      const datetime = new Date(
+        date.split(" ")[3],
+        monthIndices[date.split(" ")[1]],
+        date.split(" ")[2],
+        time.split(":")[0],
+        time.split(":")[1]
+      );
+      const open_check_in = dateAndStage.split(";").length > 3;
+      const check_in_policy = dateAndStage.split(";")[2];
+      return {
+        datetime,
+        check_in_policy,
+        open_check_in,
+        stage_action: stage,
+      };
+    });
 
   // click functions
   const handleChange = (e) => {
@@ -186,10 +190,10 @@ const CreateEvent = ({ onClose }) => {
         pool_play: poolPlay,
         cross_over: crossOver,
         dates: formatQueryDates(queryDates),
-        venues: venues.map(venue => venue.id),
+        venues: venues.map((venue) => venue.id),
         pool_size: minPoolSize,
-        match_time_minutes: 30
-      }
+        match_time_minutes: 30,
+      };
       const response = await addEntity({ name: "tournament", body: { data } });
       console.log(response);
       onClose();
@@ -268,8 +272,8 @@ const CreateEvent = ({ onClose }) => {
                           !poolPlay
                             ? styles[`checkbox-disabled`]
                             : crossOver
-                              ? styles[`checkbox-checked`]
-                              : styles.checkbox
+                            ? styles[`checkbox-checked`]
+                            : styles.checkbox
                         }
                         type="checkbox"
                         id="1"
@@ -440,7 +444,7 @@ const CreateEvent = ({ onClose }) => {
                 flexWrap: "wrap",
               }}
             >
-              {selectedDates.map((d,i) => (
+              {selectedDates.map((d, i) => (
                 <TimeCard
                   date={d}
                   queryDates={getQueryDates}

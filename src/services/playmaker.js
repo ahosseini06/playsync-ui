@@ -26,7 +26,9 @@ export const playmakerApi = createApi({
       query: (arg) => {
         const { name, populate } = arg;
         let query = `${pluralize(name.replace('_', '-'))}`
-        if (populate) query += '?populate=*';
+        if (populate === true) {query += '?populate=*';} else {
+          query+= `?populate=${populate}`
+        }
         console.log(query);
         return query;
       }
@@ -119,6 +121,11 @@ export const playmakerApi = createApi({
         return tags
       },
     }),
+    customGet: builder.query({
+      query: (url) => {
+        return url;
+      }
+    }),
     getRating: builder.mutation({
       query(arg) {
         const { body } = arg;
@@ -208,6 +215,7 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useAddEntityMutation,
+  useCustomGetQuery,
   useGetRatingMutation,
   useUpdateEntityMutation,
   useUpdateMessagesReadMutation,

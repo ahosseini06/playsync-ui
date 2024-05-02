@@ -9,14 +9,12 @@ import Register from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import { UserProvider } from './UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
-
-
-
-
-
+import Invite from './pages/Invite.jsx';
+import View from './pages/View.jsx';
 
 
  function App() {
+
 
   const router = createBrowserRouter  ([
     {
@@ -34,12 +32,22 @@ import useLocalStorage from './hooks/useLocalStorage';
     {
       path: "/dashboard",
       element: <Dashboard/>,
-    }
+    },
+    {
+      path: "/invite",
+      element: <Invite/>,
+    },
+    {
+      path: "/invite/:inviteString",
+      element: <Invite/>,
+    },
+    {
+      path: "/view/:publicString",
+      element: <View/>,
+    },
   ])
 
   return (
-    
-    
       <ChakraProvider>
         <title>Playmaker</title>
       <div className="container" style={{ padding: 0, width: "100%", margin: 0, maxWidth: "100%" }}>

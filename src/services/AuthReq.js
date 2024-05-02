@@ -31,7 +31,7 @@ export const login = async (identifier, password) => {
     return rValue;
 };
 
-export const register = async (username, email, password) => {
+export const register = async (username, email, password, type) => {
     try {
     // Make a request to the Strapi register endpoint
     const response = await fetch(`${baseUrl}/auth/local/register`, {
@@ -43,6 +43,7 @@ export const register = async (username, email, password) => {
         username: username,
         email: email,
         password: password,
+        type: type
         }),
     });
 

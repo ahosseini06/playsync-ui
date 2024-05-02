@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./ManageEvents.css";
 import { Portal, useDisclosure } from "@chakra-ui/react";
-import { useGetEntitiesQuery } from "../../services/playmaker";
+import {
+  useGetEntitiesQuery,
+  useGetNestedEntitiesQuery,
+} from "../../services/playmaker";
 import TournamentSelector from "../tournamentSelector/TournamentSelector";
 import NoEvents from "../noEvents/NoEvents";
 import ReactDOM from "react-dom";
@@ -30,7 +33,7 @@ import { Button } from "react-bootstrap";
 const ManageEvents = ({ onView, onEdit, onRemove }) => {
   const { data: tournaments } = useGetEntitiesQuery({
     name: "tournaments",
-    populate: true,
+    populate: "event_dates ",
   });
 
   console.log("tournaments", tournaments);

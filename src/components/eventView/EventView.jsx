@@ -1,13 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const EventView = ({tournament}) => {
+const EventView = ({ tournament }) => {
   return (
     <div>
-        <h1>
-            {tournament.attributes.name}
-        </h1>
+      <h1>{tournament.attributes.name}</h1>
     </div>
-  )
-}
+  );
+};
 
-export default EventView
+export default EventView;

@@ -75,7 +75,8 @@
     align-self: center;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    max-width: 350px;
+    width: 100%;
     padding-bottom: 2rem;
     background-color:#24144840;
     z-index: 1;
