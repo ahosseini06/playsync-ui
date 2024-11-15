@@ -75,12 +75,12 @@ const CreateEvent = ({ onClose }) => {
   const [addEntity] = useAddEntityMutation();
 
   // Tournament information front end functions
-  const incrementNumPools = () => setNumPools(numPools + 1);
+  /*const incrementNumPools = () => setNumPools(numPools + 1);
   const decrementNumPools = () =>
     numPools > minPoolSize && setNumPools(numPools - 1);
 
   const incrementNumTiers = () => setNumTiers(numTiers + 1);
-  const decrementNumTiers = () => numTiers > 1 && setNumTiers(numTiers - 1);
+  const decrementNumTiers = () => numTiers > 1 && setNumTiers(numTiers - 1);*/ //deprecated
 
   const addVenue = () => {
     setVenues([...venues, selectedAddress]);
@@ -292,17 +292,18 @@ const CreateEvent = ({ onClose }) => {
                     <NumberInput
                       style={{ backgroundColor: "white", borderRadius: "10px" }}
                       value={numPools}
+                      onChange={(e) => setNumPools(e)}
                       min={3}
                     >
                       <NumberInputField className={styles[`num-input`]} />
                       <NumberInputStepper>
                         <NumberIncrementStepper
                           color="purple.600"
-                          onClick={incrementNumPools}
+                          //onClick={incrementNumPools}
                         />
                         <NumberDecrementStepper
                           color="purple.600"
-                          onClick={decrementNumPools}
+                          //onClick={decrementNumPools}
                         />
                       </NumberInputStepper>
                     </NumberInput>
@@ -330,17 +331,18 @@ const CreateEvent = ({ onClose }) => {
                     <NumberInput
                       style={{ backgroundColor: "white", borderRadius: "5px" }}
                       value={numTiers}
+                      onChange={(e) => setNumTiers(e)}
                       min={1}
                     >
                       <NumberInputField className={styles[`num-input`]} />
                       <NumberInputStepper>
                         <NumberIncrementStepper
                           color="purple.600"
-                          onClick={incrementNumTiers}
+                          //onClick={incrementNumTiers}
                         />
                         <NumberDecrementStepper
                           color="purple.600"
-                          onClick={decrementNumTiers}
+                          //onClick={decrementNumTiers}
                         />
                       </NumberInputStepper>
                     </NumberInput>
