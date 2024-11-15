@@ -104,7 +104,7 @@ const SignUp = () => {
   function isValidPassword() {
     // Define a regular expression pattern for password validation.
     // at least one letter, at least one number, at least 8 characters
-    const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
     return pattern.test(password);
   }
   function doPasswordsMatch() {
